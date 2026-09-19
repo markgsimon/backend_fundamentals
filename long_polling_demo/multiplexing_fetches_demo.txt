@@ -1,0 +1,9 @@
+1. navigate to the browser localhost:8080 and make sure you are on /
+
+submit this in the browser console on that page
+fetch("http://localhost:8080/submit", {"method": "POST"}).then(a => a.text()).then(console.log)
+
+
+then make multiple queries with 
+
+fetch("http://localhost:8080/checkstatus?jobId=job:<jobId_from_submit>").then(a => a.text()).then(console.log)

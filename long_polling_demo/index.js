@@ -2,6 +2,15 @@ const app = require("express")();
 
 const jobs = {};
 
+/* serving a little html on / 
+* so I can use localhost:8080 to send fetches  
+* the / is a real html document without a default-src = 'none' to avoid csp issues
+* the / also is the same origin as the fetches url so no isssues with cors
+*/
+app.get("/", (req, res) => {
+  res.end("<!doctype html><title>ok</title>ok");
+});
+
 app.post("/submit", (req,res) => {
     const jobId = `job:${Date.now()}`;
     jobs[jobId] = 0;
