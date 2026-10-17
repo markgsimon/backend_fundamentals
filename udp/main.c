@@ -28,7 +28,7 @@ int main(int argc, char** argv ) {
 
     myAddr.sin_family = AF_INET;
     myAddr.sin_port = htons(port);
-    myAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    myAddr.sin_addr.s_addr = INADDR_ANY;
 
     bind(sockfd, (struct sockaddr*)&myAddr, sizeof(myAddr));
 
@@ -38,7 +38,9 @@ int main(int argc, char** argv ) {
     // while ((c = getchar()) != EOF){
     while(1 == 1) {
         recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr*)& remoteAddr, &addr_size);
-        printf("got data from %s ", buffer);
+        printf("\n Received data from source IP: %s and Port: %u\n", inet_ntoa(remoteAddr.sin_addr), ntohs(remoteAddr.sin_port));
+
+        printf("\nData in buffer:\n %s", buffer);
     }
 
 
